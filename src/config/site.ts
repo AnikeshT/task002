@@ -12,12 +12,14 @@ export const siteConfig = {
   emergencyPhone: '+41 22 819 90 00',
   headquarters: 'Rue du Rhône 42, 1204 Geneva, Switzerland & Tokyo, Japan',
   navLinks: [
-    { label: 'The Window', href: '#window-stage' },
-    { label: 'The Pursuit of Feeling', href: '#feelings-engine' },
+    { label: 'The Horizon', href: '#hero' },
+    { label: 'Journey Rail', href: '#journey-rail' },
+    { label: 'Feelings', href: '#feelings-engine' },
     { label: 'Curated Routes', href: '#journeys' },
-    { label: 'Daily Architecture', href: '#itinerary-journal' },
+    { label: 'Field Journal', href: '#itinerary-journal' },
+    { label: 'Bespoke Architect', href: '#planner' },
+    { label: 'Curators', href: '#curators' },
     { label: 'Philosophy', href: '#philosophy' },
-    { label: 'Dispatches', href: '#dispatches' },
     { label: 'Inquiries', href: '#inquire' },
   ],
   socials: {

@@ -3,27 +3,28 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Mountain, Compass, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Mountain, Compass, ShieldCheck, MapPin } from 'lucide-react';
 import { windowVistasData } from '@/data/windowVistas';
 import { siteConfig } from '@/config/site';
+import { SelfDescribingText } from '@/components/common/SelfDescribingText';
 import { smoothScrollTo } from '@/utils/smoothScroll';
 
-export const WindowStage: React.FC = () => {
+export const WorldClassHero: React.FC = () => {
   const [activeVistaIndex, setActiveVistaIndex] = useState(0);
 
   const currentVista = windowVistasData[activeVistaIndex];
 
   return (
-    <section id="window-stage" className="relative min-h-[96vh] flex flex-col justify-between pt-28 pb-16 overflow-hidden">
-      {/* Background Architectural Window View with Smooth Motion Crossfade */}
+    <section id="hero" className="relative min-h-[96vh] flex flex-col justify-between pt-28 pb-16 overflow-hidden">
+      {/* Background Architectural Viewport with Silky Motion Crossfade */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentVista.id}
-            initial={{ opacity: 0, scale: 1.08 }}
+            initial={{ opacity: 0, scale: 1.06 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0"
           >
             <Image
@@ -37,12 +38,12 @@ export const WindowStage: React.FC = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Soft Vignette & Editorial Framing */}
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/45 to-canvas/75" />
+        {/* Cinematic Vignette & Editorial Atmosphere */}
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/40 to-canvas/75" />
       </div>
 
       <div className="container-custom relative z-10 flex-1 flex flex-col justify-between">
-        {/* Top Vista Telemetry & Coordinates */}
+        {/* Top Floating Telemetry Strip */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-b border-canvas-border pb-4 text-xs font-mono text-ink-muted">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-accent-ochre animate-pulse" />
@@ -60,43 +61,33 @@ export const WindowStage: React.FC = () => {
             </span>
             <span className="text-ink-faint">•</span>
             <span className="text-paper-bone">
-              Access: By Private Sanctioned Entry
+              Access: Private Sanctioned Entry
             </span>
           </div>
         </div>
 
-        {/* Hero Narrative Headline with Smooth AnimatePresence */}
+        {/* Hero Headline with Kinetic Self-Describing Animation */}
         <div className="my-auto py-12 max-w-4xl space-y-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentVista.id + '-content'}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="space-y-6"
-            >
-              <div className="inline-block font-mono text-[11px] uppercase tracking-[0.25em] text-accent-ochre">
-                {currentVista.country} — {currentVista.seasonText}
-              </div>
+          <div className="inline-block font-mono text-[11px] uppercase tracking-[0.25em] text-accent-ochre">
+            {currentVista.country} — {currentVista.seasonText}
+          </div>
 
-              <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl text-paper-light font-normal tracking-tight leading-[1.02]">
-                Travel begins <br />
-                <span className="italic font-light text-paper-bone">beyond the window.</span>
-              </h1>
+          <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl text-paper-light font-normal tracking-tight leading-[1.03]">
+            JOURNEYS BEYOND <br />
+            THE WINDOW INTO <br />
+            <SelfDescribingText />
+          </h1>
 
-              <p className="font-sans text-base sm:text-xl text-paper-muted font-light max-w-2xl leading-relaxed">
-                {currentVista.tagline}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+          <p className="font-sans text-base sm:text-xl text-paper-muted font-light max-w-2xl leading-relaxed">
+            Small-group bespoke expeditions across Earth’s quietest sanctuaries. Capped strictly at eight travelers, walk-tested personally, and led by masters who call the land home.
+          </p>
 
           <div className="pt-4 flex flex-wrap items-center gap-4">
             <button
-              onClick={() => smoothScrollTo('journeys')}
+              onClick={() => smoothScrollTo('journey-rail')}
               className="px-7 py-3.5 rounded-full text-xs font-mono uppercase tracking-widest text-ink-dark bg-paper-light hover:bg-accent-ochre hover:text-white transition-all duration-300 shadow-xl flex items-center gap-2 group active:scale-95"
             >
-              <span>Explore Route Portfolios</span>
+              <span>Explore Master Routes</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
 
@@ -104,7 +95,7 @@ export const WindowStage: React.FC = () => {
               onClick={() => smoothScrollTo('feelings-engine')}
               className="px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-widest text-paper-light border border-canvas-border hover:border-canvas-border-strong hover:bg-white/5 transition-all duration-300 active:scale-95"
             >
-              Discover by Emotion
+              Pursuit of Feeling
             </button>
           </div>
         </div>
@@ -112,7 +103,7 @@ export const WindowStage: React.FC = () => {
         {/* Bottom Pinned Panorama Switcher Rail (Mado Inspired) */}
         <div className="pt-8 border-t border-canvas-border">
           <div className="text-[10px] font-mono uppercase tracking-widest text-ink-faint mb-3">
-            Select Observation Aperture:
+            Select Observation Horizon:
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
             {windowVistasData.map((vista, idx) => (
