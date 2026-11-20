@@ -1,47 +1,35 @@
 import React from 'react';
-import { HeroStage } from '@/components/home/HeroStage';
-import { AuroraLiveHUD } from '@/components/home/AuroraLiveHUD';
-import { CuratedExpeditions } from '@/components/home/CuratedExpeditions';
-import { InteractiveRouteExplorer } from '@/components/home/InteractiveRouteExplorer';
-import { BespokeExpeditionBuilder } from '@/components/home/BespokeExpeditionBuilder';
-import { PrivateSanctuariesShowcase } from '@/components/home/PrivateSanctuariesShowcase';
-import { ArcticGearVault } from '@/components/home/ArcticGearVault';
-import { ExplorerTestimonials } from '@/components/home/ExplorerTestimonials';
-import { FaqSection } from '@/components/home/FaqSection';
-import { CtaBanner } from '@/components/home/CtaBanner';
+import { WindowStage } from '@/components/home/WindowStage';
+import { FeelingsEngine } from '@/components/home/FeelingsEngine';
+import { CuratedRoutes } from '@/components/home/CuratedRoutes';
+import { ItineraryJournal } from '@/components/home/ItineraryJournal';
+import { PhilosophyManifesto } from '@/components/home/PhilosophyManifesto';
+import { Dispatches } from '@/components/home/Dispatches';
+import { InquiryDrawer } from '@/components/home/InquiryDrawer';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-arctic-950 text-frost selection:bg-aurora-cyan selection:text-arctic-950">
-      {/* 1. Cinematic Atmospheric Hero Stage */}
-      <HeroStage />
+    <main className="min-h-screen bg-canvas text-paper-light selection:bg-accent-ochre selection:text-white">
+      {/* 1. Mado Inspired: The Perspective Window Stage */}
+      <WindowStage />
 
-      {/* 2. Real-Time Aurora Borealis & Geomagnetic HUD */}
-      <AuroraLiveHUD />
+      {/* 2. Black Tomato Inspired: The Pursuit of Feeling (Emotion-led discovery) */}
+      <FeelingsEngine />
 
-      {/* 3. Flagship Curated Polar Expeditions */}
-      <CuratedExpeditions />
+      {/* 3. Tour Operator Inspired: Curated Human Routes ("Small on purpose. Local by design.") */}
+      <CuratedRoutes />
 
-      {/* 4. Day-by-Day Interactive Route & Waypoint Architecture */}
-      <InteractiveRouteExplorer />
+      {/* 4. Pelorus Inspired: Daily Architecture & Narrative Field Journal */}
+      <ItineraryJournal />
 
-      {/* 5. Bespoke 3-Step Expedition Calculator */}
-      <BespokeExpeditionBuilder />
+      {/* 5. Aman / Belmond Inspired: Quiet Luxury Manifesto & Commitments */}
+      <PhilosophyManifesto />
 
-      {/* 6. Private Architectural Sanctuaries & Explorer Vessels */}
-      <PrivateSanctuariesShowcase />
+      {/* 6. Condé Nast Traveler Inspired: Verified Field Dispatches */}
+      <Dispatches />
 
-      {/* 7. The High-Polar Technical Equipment Locker */}
-      <ArcticGearVault />
-
-      {/* 8. Field Dispatches & Verified Explorer Logs */}
-      <ExplorerTestimonials />
-
-      {/* 9. Expedition Travel Intelligence FAQ */}
-      <FaqSection />
-
-      {/* 10. Grand Departure Conversion Section */}
-      <CtaBanner />
+      {/* 7. Frictionless High-Touch Consultation & Official Booking Desk */}
+      <InquiryDrawer />
     </main>
   );
 }

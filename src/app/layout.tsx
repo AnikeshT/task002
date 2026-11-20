@@ -13,23 +13,21 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    'Nordvall Expeditions',
-    'Arctic Luxury Tours',
-    'Svalbard Polar Yacht',
-    'Aurora Borealis Glass Igloo Norway',
-    'Iceland Blue Ice Caves Super-Jeep',
-    'Swedish Lapland Treehotel',
-    'Lofoten Heli Skiing Fjord Sauna',
+    'KAIROS',
+    'Haute Experiential Journeys',
+    'Kyoto Zen Sanctuaries',
+    'Patagonia Private Catamaran Fjords',
+    'Swiss Alpine Chalets Zermatt',
+    'Svalbard Ice Yacht',
     'staging.klnk.tv',
   ],
-  authors: [{ name: 'Nordvall Expeditions Group AS' }],
-  creator: 'Nordvall Expeditions',
+  authors: [{ name: 'KAIROS Journeys International SA' }],
+  creator: 'KAIROS',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: [{ url: '/icon.svg', type: 'image/svg+xml' }],
   },
   openGraph: {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -38,10 +36,10 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=1200&h=630&q=85',
+        url: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&h=630&q=85',
         width: 1200,
         height: 630,
-        alt: 'Nordvall Arctic Expeditions',
+        alt: 'KAIROS Journeys Beyond the Window',
       },
     ],
     locale: 'en_US',
@@ -51,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: ['https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=1200&h=630&q=85'],
+    images: ['https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&h=630&q=85'],
   },
 };
 
@@ -66,18 +64,13 @@ export default function RootLayout({
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
-    telephone: siteConfig.emergencyPhone,
+    telephone: siteConfig.conciergePhone,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Sjøgata 16',
-      addressLocality: 'Tromsø',
-      postalCode: '9008',
-      addressCountry: 'NO',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 69.6492,
-      longitude: 18.9553,
+      streetAddress: 'Rue du Rhône 42',
+      addressLocality: 'Geneva',
+      postalCode: '1204',
+      addressCountry: 'CH',
     },
     priceRange: '€€€€',
   };
@@ -90,7 +83,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-arctic-950 text-frost antialiased flex flex-col justify-between">
+      <body className="min-h-screen bg-canvas text-paper-light antialiased flex flex-col justify-between">
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

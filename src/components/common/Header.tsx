@@ -2,20 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Compass, Menu, X, ArrowUpRight, Radio, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Compass, Volume2, VolumeX } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
-interface HeaderProps {
-  onOpenBookingModal?: () => void;
-}
-
-export const Header: React.FC<HeaderProps> = ({ onOpenBookingModal }) => {
+export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isAudioAmbience, setIsAudioAmbience] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -23,151 +20,143 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBookingModal }) => {
 
   return (
     <>
-      {/* Top Telemetry Ticker Bar */}
-      <div className="bg-arctic-950/90 border-b border-frost-line text-xs font-mono py-2 text-frost-muted px-4 hidden md:block">
-        <div className="container-custom flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aurora-green opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-aurora-green"></span>
-              </span>
-              <span className="text-frost font-medium">LIVE KP-INDEX:</span>
-              <span className="text-aurora-green font-semibold">5.6 HIGH ACTIVITY</span>
-            </div>
-            <div className="hidden lg:flex items-center gap-2">
-              <Radio className="w-3.5 h-3.5 text-glacier-400" />
-              <span>STATION: 69.6492° N, 18.9553° E (TROMSØ)</span>
-            </div>
-            <div className="hidden xl:flex items-center gap-2">
-              <span>SOLAR WIND: 482 km/s</span>
-              <span className="text-frost-dark">•</span>
-              <span>GEOMAGNETIC: STORM G1 WATCH</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 text-frost-muted">
-            <span className="text-frost-dark">MAX 8 GUESTS PER EXPEDITION</span>
-            <span className="text-frost-dark">•</span>
-            <a
-              href={siteConfig.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-glacier-300 hover:text-white transition-colors flex items-center gap-1"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-aurora-cyan" />
-              <span>Official Direct Booking Desk</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Sticky Header */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-arctic-950/85 backdrop-blur-xl border-b border-frost-line py-3 shadow-2xl shadow-arctic-950/50'
-            : 'bg-transparent py-5'
+            ? 'bg-canvas/90 backdrop-blur-md border-b border-canvas-border py-4 shadow-xl'
+            : 'bg-transparent py-7'
         }`}
       >
         <div className="container-custom flex items-center justify-between">
-          {/* Brand Logo */}
+          {/* Brand Wordmark */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-glacier-500/20 via-aurora-cyan/10 to-aurora-violet/20 border border-glacier-400/30 flex items-center justify-center text-glacier-300 group-hover:border-glacier-400 group-hover:text-white transition-all duration-300 shadow-lg shadow-glacier-500/10">
-              <Compass className="w-5 h-5 transition-transform duration-500 group-hover:rotate-45" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-lg sm:text-xl tracking-wider text-frost flex items-center gap-1.5">
-                NORDVALL
-                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-aurora-cyan/15 text-aurora-cyan border border-aurora-cyan/30">
-                  78°N
-                </span>
-              </span>
-              <span className="text-[10px] tracking-widest uppercase font-mono text-frost-muted">
-                Polar Expeditions
-              </span>
-            </div>
+            <span className="font-serif text-2xl sm:text-3xl font-light tracking-[0.2em] text-paper-light uppercase group-hover:text-accent-ochre transition-colors duration-300">
+              KAIROS
+            </span>
+            <span className="hidden sm:inline-block w-px h-4 bg-canvas-border" />
+            <span className="hidden sm:inline-block font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+              Beyond the Window
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 glass-panel rounded-full px-5 py-2">
-            {siteConfig.navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-xs uppercase tracking-wider font-mono text-frost-muted hover:text-white px-3 py-1.5 rounded-full hover:bg-white/5 transition-all duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+          {/* Desktop Editorial Navigation */}
+          <nav className="hidden lg:flex items-center gap-8 text-xs font-mono tracking-widest uppercase text-ink-muted">
+            <a href="#window-stage" className="hover:text-paper-light transition-colors duration-200">
+              The Window
+            </a>
+            <a href="#feelings-engine" className="hover:text-paper-light transition-colors duration-200">
+              Pursuit of Feeling
+            </a>
+            <a href="#journeys" className="hover:text-paper-light transition-colors duration-200">
+              Curated Routes
+            </a>
+            <a href="#itinerary-journal" className="hover:text-paper-light transition-colors duration-200">
+              Daily Architecture
+            </a>
+            <a href="#philosophy" className="hover:text-paper-light transition-colors duration-200">
+              Philosophy
+            </a>
+            <a href="#dispatches" className="hover:text-paper-light transition-colors duration-200">
+              Dispatches
+            </a>
           </nav>
 
-          {/* Action CTAs */}
-          <div className="hidden sm:flex items-center gap-3">
-            <a
-              href="#bespoke-builder"
-              className="text-xs font-mono uppercase tracking-wider text-frost-muted hover:text-white px-3 py-2 rounded-lg border border-frost-line hover:border-glacier-400/40 transition-all duration-200 hidden md:inline-flex items-center gap-1.5"
+          {/* Right Action & Audio State */}
+          <div className="hidden sm:flex items-center gap-5">
+            <button
+              onClick={() => setIsAudioAmbience(!isAudioAmbience)}
+              className="flex items-center gap-2 text-[11px] font-mono tracking-wider text-ink-muted hover:text-paper-light transition-colors px-3 py-1.5 rounded-full border border-canvas-border hover:border-canvas-border-strong"
+              aria-label="Toggle sensory soundscape"
             >
-              <Sparkles className="w-3.5 h-3.5 text-aurora-emerald" />
-              <span>Bespoke Route</span>
-            </a>
+              {isAudioAmbience ? (
+                <>
+                  <Volume2 className="w-3.5 h-3.5 text-accent-ochre" />
+                  <span>Ambience: Forest Breeze</span>
+                </>
+              ) : (
+                <>
+                  <VolumeX className="w-3.5 h-3.5" />
+                  <span>Mute</span>
+                </>
+              )}
+            </button>
+
             <a
               href={siteConfig.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold text-arctic-950 bg-gradient-to-r from-glacier-300 via-aurora-cyan to-aurora-green rounded-full shadow-lg shadow-glacier-500/25 hover:shadow-glacier-400/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-widest text-ink-dark bg-paper-light hover:bg-accent-ochre hover:text-white transition-all duration-300 shadow-md group"
             >
-              <span>Reserve Departure</span>
-              <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>Curate Journey</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg border border-frost-line text-frost hover:bg-white/5 transition-colors"
-            aria-label="Toggle navigation menu"
+            className="lg:hidden p-2 text-paper-light hover:text-accent-ochre transition-colors"
+            aria-label="Toggle navigation"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-[60px] bg-arctic-950/98 backdrop-blur-2xl border-b border-frost-line p-6 shadow-2xl transition-all">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2 pb-3 border-b border-frost-line text-xs font-mono text-aurora-green">
-                <span className="relative flex h-2 w-2">
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-aurora-green"></span>
-                </span>
-                <span>AURORA TELEMETRY: KP 5.6 (ACTIVE)</span>
-              </div>
-              {siteConfig.navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm font-mono uppercase tracking-wider text-frost-muted hover:text-white py-2 flex items-center justify-between border-b border-frost-line/40"
-                >
-                  <span>{link.label}</span>
-                  <ArrowUpRight className="w-4 h-4 text-frost-dark" />
-                </a>
-              ))}
+          <div className="lg:hidden fixed inset-x-0 top-[70px] bg-canvas-elevated/98 backdrop-blur-2xl border-b border-canvas-border p-6 shadow-2xl animate-in fade-in duration-300">
+            <div className="flex flex-col gap-5 text-sm font-mono tracking-wider uppercase text-ink-muted">
+              <a
+                href="#window-stage"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-canvas-border/40 hover:text-paper-light"
+              >
+                The Window
+              </a>
+              <a
+                href="#feelings-engine"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-canvas-border/40 hover:text-paper-light"
+              >
+                The Pursuit of Feeling
+              </a>
+              <a
+                href="#journeys"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-canvas-border/40 hover:text-paper-light"
+              >
+                Curated Routes
+              </a>
+              <a
+                href="#itinerary-journal"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-canvas-border/40 hover:text-paper-light"
+              >
+                Daily Architecture
+              </a>
+              <a
+                href="#philosophy"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-canvas-border/40 hover:text-paper-light"
+              >
+                Philosophy
+              </a>
+              <a
+                href="#dispatches"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-canvas-border/40 hover:text-paper-light"
+              >
+                Dispatches
+              </a>
+
               <div className="pt-4 flex flex-col gap-3">
-                <a
-                  href="#bespoke-builder"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full py-3 text-center text-xs font-mono uppercase tracking-wider rounded-xl border border-glacier-400/40 text-frost hover:bg-white/5 transition-colors"
-                >
-                  Bespoke Itinerary Builder
-                </a>
                 <a
                   href={siteConfig.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 text-center text-xs font-mono uppercase tracking-wider font-semibold rounded-xl bg-gradient-to-r from-glacier-300 via-aurora-cyan to-aurora-green text-arctic-950 shadow-xl flex items-center justify-center gap-1.5"
+                  className="w-full py-3.5 text-center text-xs font-mono uppercase tracking-widest font-semibold rounded-full bg-paper-light text-ink-dark hover:bg-accent-ochre hover:text-white transition-colors"
                 >
-                  <span>Reserve Departure via Booking Desk</span>
-                  <ArrowUpRight className="w-4 h-4" />
+                  Curate Journey via Desk
                 </a>
               </div>
             </div>
