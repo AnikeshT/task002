@@ -1,9 +1,17 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Compass, ShieldCheck, Globe, Heart } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { smoothScrollTo } from '@/utils/smoothScroll';
 
 export const Footer: React.FC = () => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    smoothScrollTo(id, 90);
+  };
+
   return (
     <footer className="bg-canvas-elevated border-t border-canvas-border text-ink-muted pt-20 pb-12">
       <div className="container-custom">
@@ -47,22 +55,38 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
-                <a href="#journeys" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#journeys"
+                  onClick={(e) => handleScroll(e, 'journeys')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   Kyoto & Yakushima
                 </a>
               </li>
               <li>
-                <a href="#journeys" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#journeys"
+                  onClick={(e) => handleScroll(e, 'journeys')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   Patagonia Fjords
                 </a>
               </li>
               <li>
-                <a href="#journeys" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#journeys"
+                  onClick={(e) => handleScroll(e, 'journeys')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   Swiss Engadin & Zermatt
                 </a>
               </li>
               <li>
-                <a href="#journeys" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#journeys"
+                  onClick={(e) => handleScroll(e, 'journeys')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   Svalbard 78°N Ice Yacht
                 </a>
               </li>
@@ -76,27 +100,47 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
-                <a href="#window-stage" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#window-stage"
+                  onClick={(e) => handleScroll(e, 'window-stage')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   The Window (Mado Concept)
                 </a>
               </li>
               <li>
-                <a href="#feelings-engine" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#feelings-engine"
+                  onClick={(e) => handleScroll(e, 'feelings-engine')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   The Pursuit of Feeling
                 </a>
               </li>
               <li>
-                <a href="#itinerary-journal" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#itinerary-journal"
+                  onClick={(e) => handleScroll(e, 'itinerary-journal')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   Daily Narrative Journal
                 </a>
               </li>
               <li>
-                <a href="#philosophy" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#philosophy"
+                  onClick={(e) => handleScroll(e, 'philosophy')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   The KAIROS Charter
                 </a>
               </li>
               <li>
-                <a href="#dispatches" className="hover:text-paper-light transition-colors">
+                <a
+                  href="#dispatches"
+                  onClick={(e) => handleScroll(e, 'dispatches')}
+                  className="hover:text-paper-light transition-colors"
+                >
                   Guest Field Dispatches
                 </a>
               </li>
@@ -115,7 +159,7 @@ export const Footer: React.FC = () => {
               href={siteConfig.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-canvas border border-canvas-border hover:border-accent-ochre text-paper-light text-xs font-mono uppercase tracking-widest transition-all group w-full justify-center"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-canvas border border-canvas-border hover:border-accent-ochre text-paper-light text-xs font-mono uppercase tracking-widest transition-all group w-full justify-center active:scale-95"
             >
               <span>Launch Booking Desk</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

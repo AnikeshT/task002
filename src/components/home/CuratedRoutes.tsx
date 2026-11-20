@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowUpRight, Users, Calendar, MapPin, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { masterJourneysData, MasterJourney } from '@/data/journeys';
 import { siteConfig } from '@/config/site';
+import { smoothScrollTo } from '@/utils/smoothScroll';
 
 interface CuratedRoutesProps {
   onSelectJourney?: (journey: MasterJourney) => void;
@@ -19,11 +20,11 @@ export const CuratedRoutes: React.FC<CuratedRoutesProps> = ({ onSelectJourney })
           <div className="max-w-2xl space-y-4">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent-ochre">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Tour Operator Inspired Human Curation</span>
+              <span>Small on Purpose. Local by Design.</span>
             </div>
             <h2 className="font-serif text-4xl sm:text-6xl text-paper-light font-normal tracking-tight">
-              Small on purpose. <br />
-              <span className="italic font-light text-paper-bone">Led by people who call the place home.</span>
+              Four places <br />
+              <span className="italic font-light text-paper-bone">we know by heart.</span>
             </h2>
             <p className="font-sans text-base text-ink-muted leading-relaxed font-light">
               Never more than eight travelers. Zero scripted megaphone tours. Every single itinerary scouted and walk-tested personally before being offered.
@@ -134,18 +135,20 @@ export const CuratedRoutes: React.FC<CuratedRoutesProps> = ({ onSelectJourney })
                 </div>
 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <a
-                    href="#itinerary-journal"
-                    onClick={() => onSelectJourney?.(journey)}
-                    className="flex-1 sm:flex-none px-4 py-2.5 rounded-full border border-canvas-border hover:border-canvas-border-strong text-xs font-mono uppercase tracking-widest text-paper-light text-center hover:bg-white/5 transition-colors"
+                  <button
+                    onClick={() => {
+                      onSelectJourney?.(journey);
+                      smoothScrollTo('itinerary-journal');
+                    }}
+                    className="flex-1 sm:flex-none px-4 py-2.5 rounded-full border border-canvas-border hover:border-canvas-border-strong text-xs font-mono uppercase tracking-widest text-paper-light text-center hover:bg-white/5 transition-colors active:scale-95"
                   >
                     View Journal
-                  </a>
+                  </button>
                   <a
                     href={siteConfig.bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-paper-light text-ink-dark font-mono text-xs uppercase tracking-widest font-semibold hover:bg-accent-ochre hover:text-white transition-all flex items-center justify-center gap-1 group shadow-md"
+                    className="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-paper-light text-ink-dark font-mono text-xs uppercase tracking-widest font-semibold hover:bg-accent-ochre hover:text-white transition-all flex items-center justify-center gap-1 group shadow-md active:scale-95"
                   >
                     <span>Reserve</span>
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

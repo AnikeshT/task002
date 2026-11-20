@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Calendar, MapPin, ChevronRight, Bed, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { masterJourneysData, MasterJourney } from '@/data/journeys';
 import { siteConfig } from '@/config/site';
@@ -37,7 +38,7 @@ export const ItineraryJournal: React.FC<ItineraryJournalProps> = ({
           </p>
         </div>
 
-        {/* Journey Tabs */}
+        {/* Journey Tabs with Smooth Transition */}
         <div className="flex flex-wrap gap-2.5 mb-10">
           {masterJourneysData.map((j) => (
             <button
@@ -46,7 +47,7 @@ export const ItineraryJournal: React.FC<ItineraryJournalProps> = ({
                 setSelectedJourneyId(j.id);
                 setActiveDayIdx(0);
               }}
-              className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest transition-all duration-300 border ${
+              className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest transition-all duration-300 border active:scale-95 ${
                 selectedJourneyId === j.id
                   ? 'bg-paper-light text-ink-dark border-paper-light shadow-md'
                   : 'bg-canvas-surface border-canvas-border text-ink-muted hover:text-paper-light'
@@ -71,7 +72,7 @@ export const ItineraryJournal: React.FC<ItineraryJournalProps> = ({
                 <button
                   key={day.day}
                   onClick={() => setActiveDayIdx(idx)}
-                  className={`w-full text-left p-3.5 rounded-2xl transition-all duration-200 flex items-center justify-between border ${
+                  className={`w-full text-left p-3.5 rounded-2xl transition-all duration-200 flex items-center justify-between border active:scale-95 ${
                     activeDayIdx === idx
                       ? 'bg-canvas-surface border-accent-ochre/80 text-paper-light shadow-sm'
                       : 'border-transparent text-ink-muted hover:bg-white/5 hover:text-paper-light'
@@ -99,64 +100,75 @@ export const ItineraryJournal: React.FC<ItineraryJournalProps> = ({
             </div>
           </div>
 
-          {/* Day Spotlight Narrative Card */}
-          <div className="lg:col-span-8 rounded-3xl surface-card p-7 sm:p-12 border border-canvas-border space-y-8">
-            {/* Top Waypoint Meta */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-canvas-border">
-              <div className="space-y-1">
-                <span className="text-xs font-mono uppercase tracking-widest text-accent-ochre">
-                  Day 0{currentDay.day} / {currentJourney.country}
-                </span>
-                <h3 className="font-serif text-3xl sm:text-4xl text-paper-light font-normal">
-                  {currentDay.title}
-                </h3>
-              </div>
-              <div className="font-mono text-xs text-ink-faint self-start sm:self-auto px-3 py-1 rounded-full bg-canvas border border-canvas-border">
-                {currentJourney.coordinates}
-              </div>
-            </div>
-
-            {/* Narrative Body */}
-            <div className="space-y-4">
-              <div className="text-[10px] font-mono uppercase tracking-widest text-ink-faint">
-                Curator’s Field Log:
-              </div>
-              <p className="font-sans text-base sm:text-lg text-paper-bone/90 leading-relaxed font-light">
-                {currentDay.narrative}
-              </p>
-            </div>
-
-            {/* Sanctuary Stay Box */}
-            <div className="p-5 rounded-2xl bg-canvas border border-canvas-border flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-canvas-surface border border-canvas-border flex items-center justify-center text-accent-ochre shrink-0">
-                <Bed className="w-5 h-5" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-ink-faint">
-                  Evening Sanctuary Stay
-                </div>
-                <div className="text-sm font-medium text-paper-light">
-                  {currentDay.sanctuaryStay}
-                </div>
-              </div>
-            </div>
-
-            {/* Direct Booking Callout */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-canvas-border">
-              <div className="text-xs font-mono text-ink-muted">
-                Interested in reserving this {currentJourney.duration} route?
-              </div>
-
-              <a
-                href={siteConfig.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-paper-light text-ink-dark font-mono text-xs uppercase tracking-widest font-semibold hover:bg-accent-ochre hover:text-white transition-all flex items-center justify-center gap-1.5 group shadow-md"
+          {/* Day Spotlight Narrative Card with AnimatePresence */}
+          <div className="lg:col-span-8 rounded-3xl surface-card p-7 sm:p-12 border border-canvas-border relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${selectedJourneyId}-day-${activeDayIdx}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="space-y-8"
               >
-                <span>Reserve Route via Desk</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </div>
+                {/* Top Waypoint Meta */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-canvas-border">
+                  <div className="space-y-1">
+                    <span className="text-xs font-mono uppercase tracking-widest text-accent-ochre">
+                      Day 0{currentDay.day} / {currentJourney.country}
+                    </span>
+                    <h3 className="font-serif text-3xl sm:text-4xl text-paper-light font-normal">
+                      {currentDay.title}
+                    </h3>
+                  </div>
+                  <div className="font-mono text-xs text-ink-faint self-start sm:self-auto px-3 py-1 rounded-full bg-canvas border border-canvas-border">
+                    {currentJourney.coordinates}
+                  </div>
+                </div>
+
+                {/* Narrative Body */}
+                <div className="space-y-4">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-ink-faint">
+                    Curator’s Field Log:
+                  </div>
+                  <p className="font-sans text-base sm:text-lg text-paper-bone/90 leading-relaxed font-light">
+                    {currentDay.narrative}
+                  </p>
+                </div>
+
+                {/* Sanctuary Stay Box */}
+                <div className="p-5 rounded-2xl bg-canvas border border-canvas-border flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-canvas-surface border border-canvas-border flex items-center justify-center text-accent-ochre shrink-0">
+                    <Bed className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-ink-faint">
+                      Evening Sanctuary Stay
+                    </div>
+                    <div className="text-sm font-medium text-paper-light">
+                      {currentDay.sanctuaryStay}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct Booking Callout */}
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-canvas-border">
+                  <div className="text-xs font-mono text-ink-muted">
+                    Interested in reserving this {currentJourney.duration} route?
+                  </div>
+
+                  <a
+                    href={siteConfig.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-6 py-3 rounded-full bg-paper-light text-ink-dark font-mono text-xs uppercase tracking-widest font-semibold hover:bg-accent-ochre hover:text-white transition-all flex items-center justify-center gap-1.5 group shadow-md active:scale-95"
+                  >
+                    <span>Reserve Route via Desk</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

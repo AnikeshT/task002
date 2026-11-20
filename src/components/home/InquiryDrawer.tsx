@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { ArrowUpRight, Compass, ShieldCheck, Mail, Phone, Calendar } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { smoothScrollTo } from '@/utils/smoothScroll';
 
 export const InquiryDrawer: React.FC = () => {
   return (
@@ -25,18 +28,18 @@ export const InquiryDrawer: React.FC = () => {
               href={siteConfig.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-paper-light text-ink-dark font-mono text-xs uppercase tracking-widest font-semibold hover:bg-accent-ochre hover:text-white transition-all flex items-center justify-center gap-2 group shadow-xl"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-paper-light text-ink-dark font-mono text-xs uppercase tracking-widest font-semibold hover:bg-accent-ochre hover:text-white transition-all flex items-center justify-center gap-2 group shadow-xl active:scale-95"
             >
               <span>Connect via Official Booking Desk</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
 
-            <a
-              href="#feelings-engine"
-              className="w-full sm:w-auto px-6 py-4 rounded-full border border-canvas-border hover:border-canvas-border-strong text-xs font-mono uppercase tracking-widest text-paper-light hover:bg-white/5 transition-all"
+            <button
+              onClick={() => smoothScrollTo('feelings-engine')}
+              className="w-full sm:w-auto px-6 py-4 rounded-full border border-canvas-border hover:border-canvas-border-strong text-xs font-mono uppercase tracking-widest text-paper-light hover:bg-white/5 transition-all active:scale-95"
             >
               Explore by Emotion
-            </a>
+            </button>
           </div>
 
           <div className="pt-8 border-t border-canvas-border flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-ink-faint">
