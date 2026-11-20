@@ -28,7 +28,7 @@ export const ItineraryJournal: React.FC<ItineraryJournalProps> = ({
         <div className="max-w-2xl space-y-4 mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent-ochre">
             <Compass className="w-3.5 h-3.5" />
-            <span>Pelorus Inspired Field Journal</span>
+            <span>Field Brief & Daily Rhythm</span>
           </div>
           <h2 className="font-serif text-4xl sm:text-6xl text-paper-light font-normal tracking-tight">
             Daily Architecture & Narrative

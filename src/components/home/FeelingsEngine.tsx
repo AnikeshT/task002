@@ -25,7 +25,7 @@ export const FeelingsEngine: React.FC = () => {
         <div className="max-w-2xl space-y-4 mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent-ochre">
             <Heart className="w-3.5 h-3.5" />
-            <span>The Pursuit of Feeling — Psychographic Discovery</span>
+            <span>The Architecture of Restoration</span>
           </div>
           <h2 className="font-serif text-4xl sm:text-6xl text-paper-light font-normal tracking-tight">
             How do you wish to feel?

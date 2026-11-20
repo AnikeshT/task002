@@ -34,7 +34,7 @@ export const HorizontalJourneyRail: React.FC<HorizontalJourneyRailProps> = ({ on
           <div className="max-w-2xl space-y-4">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent-ochre">
               <Compass className="w-3.5 h-3.5" />
-              <span>Awwwards-Standard Horizontal Navigation</span>
+              <span>Wild Frontiers & Sanctuaries · 2025–2026</span>
             </div>
             <h2 className="font-serif text-4xl sm:text-6xl text-paper-light font-normal tracking-tight">
               The Grand Horizons
